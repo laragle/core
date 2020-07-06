@@ -1,0 +1,54 @@
+{
+    "name": "laragle/auth",
+    "description": "The Laragle auth component.",
+    "keywords": [
+        "laragle",
+        "auth"
+    ],
+    "homepage": "https://github.com/laragle/auth",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Darwin Luague",
+            "email": "darwinluague9001@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laragle\\Auth\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laragle\\Auth\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laragle\\Auth\\AuthServiceProvider"
+            ],
+            "aliases": {
+                "Auth": "Laragle\\Auth\\AuthFacade"
+            }
+        }
+    }
+}

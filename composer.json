@@ -1,0 +1,46 @@
+{
+    "name": "laragle/core",
+    "description": "Laragle core API",
+    "keywords": [
+        "laragle",
+        "laravel"
+    ],
+    "homepage": "https://github.com/laragle/core",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Darwin Luague",
+            "email": "darwinluague9001@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+    },
+    "replace": {
+        "laragle/auth": "self.version"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laragle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laragle\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+}
