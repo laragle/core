@@ -9,7 +9,7 @@ This is where your description should go. Try and limit it to a paragraph or two
 
 ## Installation
 
-You can install the package via composer: teste
+You can install the package via composer:
 
 ```bash
 composer require laragle/auth
