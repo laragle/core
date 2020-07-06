@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.2.5"
     },
     "replace": {
         "laragle/auth": "self.version"
@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laragle\\": "src"
+            "Laragle\\": "src/Laragle/"
         }
     },
     "autoload-dev": {
@@ -43,4 +43,14 @@
     "config": {
         "sort-packages": true
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laragle\\Auth\\AuthServiceProvider"
+            ],
+            "aliases": {
+                "Auth": "Laragle\\Auth\\AuthFacade"
+            }
+        }
+    }
 }

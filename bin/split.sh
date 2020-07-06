@@ -20,4 +20,4 @@ git pull origin $CURRENT_BRANCH
 
 remote auth git@github.com:laragle/auth.git
 
-split 'src/Auth' auth
+split 'src/Laragle/Auth' auth

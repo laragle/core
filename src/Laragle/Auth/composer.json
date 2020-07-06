@@ -25,12 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laragle\\Auth\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Laragle\\Auth\\Tests\\": "tests"
+            "Laragle\\Auth\\": ""
         }
     },
     "scripts": {
