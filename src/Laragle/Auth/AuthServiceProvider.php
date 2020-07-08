@@ -16,8 +16,10 @@ class AuthServiceProvider extends ServiceProvider
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'auth');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'auth');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadFactoriesFrom(__DIR__.'/database/factories');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
