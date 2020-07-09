@@ -4,14 +4,25 @@ namespace Laragle\Auth\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Laragle\Auth\Traits\RedirectsUsers;
 use Laragle\Auth\Traits\ThrottlesLogins;
 
-class LoginController
+class LoginController extends Controller
 {
-    use RedirectsUsers, ThrottlesLogins;    
+    use RedirectsUsers, ThrottlesLogins;  
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }  
 
     /**
      * Handle a login request to the application.

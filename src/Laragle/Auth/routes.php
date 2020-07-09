@@ -1,5 +1,17 @@
 <?php
 
+use Laragle\Auth\Http\Controllers\EmailResetPasswordLinkController;
 use Laragle\Auth\Http\Controllers\LoginController;
+use Laragle\Auth\Http\Controllers\LogoutController;
+use Laragle\Auth\Http\Controllers\RegisterController;
+use Laragle\Auth\Http\Controllers\ResetPasswordController;
 
-Route::post('login', LoginController::class)->name('auth.login');
+Route::middleware('web')
+    ->name('laragle.auth.')
+    ->group(function () {
+        Route::post('login', LoginController::class)->name('login');
+        Route::post('logout', LogoutController::class)->name('logout');
+        Route::post('register', RegisterController::class)->name('register');
+        Route::post('password/email', EmailResetPasswordLinkController::class)->name('password.email');
+        Route::post('password/reset', ResetPasswordController::class)->name('password.reset');
+    });

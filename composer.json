@@ -49,10 +49,7 @@
         "laravel": {
             "providers": [
                 "Laragle\\Auth\\AuthServiceProvider"
-            ],
-            "aliases": {
-                "Auth": "Laragle\\Auth\\AuthFacade"
-            }
+            ]
         }
     }
 }

@@ -9,12 +9,17 @@ class LoginTest extends TestCase
     /** @test */
     public function it_can_login()
     {
+        $this->withoutExceptionHandling();
+
         $user = factory(User::class)->create();
 
-        $response = $this->postJson(route('auth.login'), [
-            'email' => $user->email
+        $response = $this->postJson(route('laragle.auth.login'), [
+            'email' => $user->email,
+            'password' => 'password'
         ]);
 
-        $this->assertTrue(true);
+        $response->assertSuccessful();
+
+        $this->assertAuthenticated();
     }
 }

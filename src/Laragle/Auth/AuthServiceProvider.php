@@ -23,8 +23,8 @@ class AuthServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/config/config.php' => config_path('auth.php'),
-            ], 'config');
+                __DIR__.'/config.php' => config_path('laragle/auth.php'),
+            ], 'laragle');
 
             // Publishing the views.
             /*$this->publishes([
@@ -52,11 +52,8 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'auth');
+        $this->mergeConfigFrom(__DIR__.'/config.php', 'laragle.auth');
 
-        // Register the main class to use with the facade
-        $this->app->singleton('auth', function () {
-            return new Auth;
-        });
+        config(['auth' => config('laragle.auth')]);
     }
 }
