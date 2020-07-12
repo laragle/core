@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Laragle\Auth\Facades\Password;
 use Laragle\Auth\Traits\RedirectsUsers;
 
 class ResetPasswordController extends Controller

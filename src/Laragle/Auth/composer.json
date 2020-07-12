@@ -40,7 +40,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laragle\\Auth\\AuthServiceProvider"
+                "Laragle\\Auth\\AuthServiceProvider",
+                "Laragle\\Auth\\Passwords\\PasswordResetServiceProvider"
             ]
         }
     }
