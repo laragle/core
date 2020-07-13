@@ -11,7 +11,7 @@ use Laragle\Auth\Notifications\ResetPasswordNotification;
 class ResetPasswordTest extends TestCase
 {
     /** @test */
-    public function it_can_email_reset_password_link()
+    public function it_can_email_reset_password_token()
     {
         $this->withoutExceptionHandling();
 
@@ -45,7 +45,7 @@ class ResetPasswordTest extends TestCase
             'password' => $newPassword,
             'password_confirmation' => $newPassword,
         ]);
-
+        
         $response->assertSuccessful();
 
         $this->assertTrue(Hash::check($newPassword, $user->fresh()->password));

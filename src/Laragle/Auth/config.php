@@ -95,8 +95,7 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'one_time_passwords',
-            'expire' => 60,
+            'expire' => 1,
             'throttle' => 60,
         ],
     ],

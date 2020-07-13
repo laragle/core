@@ -7,37 +7,10 @@ use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Laragle\Auth\Contracts\CanResetPasswordContract;
+use Laragle\Auth\Models\OneTimePassword;
 
 class DatabaseTokenRepository implements TokenRepositoryInterface
 {
-    /**
-     * The database connection instance.
-     *
-     * @var \Illuminate\Database\ConnectionInterface
-     */
-    protected $connection;
-
-    /**
-     * The Hasher implementation.
-     *
-     * @var \Illuminate\Contracts\Hashing\Hasher
-     */
-    protected $hasher;
-
-    /**
-     * The token database table.
-     *
-     * @var string
-     */
-    protected $table;
-
-    /**
-     * The hashing key.
-     *
-     * @var string
-     */
-    protected $hashKey;
-
     /**
      * The number of seconds a token should last.
      *
@@ -53,32 +26,15 @@ class DatabaseTokenRepository implements TokenRepositoryInterface
     protected $throttle;
 
     /**
-     * Constant representing the one time password action.
-     * 
-     * @var string
-     */
-    const OTP_ACTION = 'reset_password';
-
-    /**
      * Create a new token repository instance.
      *
-     * @param  \Illuminate\Database\ConnectionInterface  $connection
-     * @param  \Illuminate\Contracts\Hashing\Hasher  $hasher
-     * @param  string  $table
-     * @param  string  $hashKey
      * @param  int  $expires
      * @param  int  $throttle
      * @return void
      */
-    public function __construct(ConnectionInterface $connection, HasherContract $hasher,
-                                $table, $hashKey, $expires = 60,
-                                $throttle = 60)
+    public function __construct($expires = 1, $throttle = 60)
     {
-        $this->table = $table;
-        $this->hasher = $hasher;
-        $this->hashKey = $hashKey;
         $this->expires = $expires * 60;
-        $this->connection = $connection;
         $this->throttle = $throttle;
     }
 
@@ -86,20 +42,13 @@ class DatabaseTokenRepository implements TokenRepositoryInterface
      * Create a new token record.
      *
      * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @return string
+     * @return \Laragle\Auth\Models\OneTimePassword
      */
     public function create(CanResetPasswordContract $user)
     {
         $this->deleteExisting($user);
 
-        // We will create a new, random token for the user so that we can e-mail them
-        // a safe link to the password reset form. Then we will insert a record in
-        // the database so that we can verify the token within the actual reset.
-        $token = $this->createNewToken();
-
-        $user->otps()->create($this->getPayload($token));
-
-        return $token;
+        return $user->otps()->create(['action' => OneTimePassword::RESET_PASSWORD]);
     }
 
     /**
@@ -110,23 +59,8 @@ class DatabaseTokenRepository implements TokenRepositoryInterface
      */
     protected function deleteExisting(CanResetPasswordContract $user)
     {
-        return $user->otps()->where('action', self::OTP_ACTION)->delete();
-    }
-
-    /**
-     * Build the record payload for the table.
-     *
-     * @param  string  $token
-     * @return array
-     */
-    protected function getPayload($token)
-    {
-        return [
-            'token' => $token,
-            'action' => self::OTP_ACTION,
-            'created_at' => new Carbon
-        ];
-    }
+        return $user->otps()->where('action', OneTimePassword::RESET_PASSWORD)->delete();
+    }    
 
     /**
      * Determine if a token record exists and is valid.
@@ -138,12 +72,10 @@ class DatabaseTokenRepository implements TokenRepositoryInterface
     public function exists(CanResetPasswordContract $user, $token)
     {
         $record = $user->otps()->where(
-            'action', self::OTP_ACTION
+            'action', OneTimePassword::RESET_PASSWORD
         )->first();
 
-        return $record &&
-               ! $this->tokenExpired($record['created_at']) &&
-                 $this->hasher->check($token, $record['token']);
+        return $record && ! $this->tokenExpired($record['created_at']);
     }
 
     /**
@@ -166,7 +98,7 @@ class DatabaseTokenRepository implements TokenRepositoryInterface
     public function recentlyCreatedToken(CanResetPasswordContract $user)
     {
         $record = (array) $user->otps()->where(
-            'action', self::OTP_ACTION
+            'action', OneTimePassword::RESET_PASSWORD
         )->first();
 
         return $record && $this->tokenRecentlyCreated($record['created_at']);
@@ -198,57 +130,5 @@ class DatabaseTokenRepository implements TokenRepositoryInterface
     public function delete(CanResetPasswordContract $user)
     {
         $this->deleteExisting($user);
-    }
-
-    /**
-     * Delete expired tokens.
-     *
-     * @return void
-     */
-    public function deleteExpired()
-    {
-        $expiredAt = Carbon::now()->subSeconds($this->expires);
-
-        $this->getTable()->where('created_at', '<', $expiredAt)->delete();
-    }
-
-    /**
-     * Create a new token for the user.
-     *
-     * @return string
-     */
-    public function createNewToken()
-    {
-        return rand(100000, 999999);
-    }
-
-    /**
-     * Get the database connection instance.
-     *
-     * @return \Illuminate\Database\ConnectionInterface
-     */
-    public function getConnection()
-    {
-        return $this->connection;
-    }
-
-    /**
-     * Begin a new database query against the table.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    protected function getTable()
-    {
-        return $this->connection->table($this->table);
-    }
-
-    /**
-     * Get the hasher instance.
-     *
-     * @return \Illuminate\Contracts\Hashing\Hasher
-     */
-    public function getHasher()
-    {
-        return $this->hasher;
     }
 }

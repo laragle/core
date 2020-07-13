@@ -5,9 +5,12 @@ namespace Laragle\Auth\Http\Controllers;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
+use Laragle\Auth\Models\OneTimePassword;
 use Laragle\Auth\Traits\RedirectsUsers;
 
-class EmailVerificationController
+class EmailVerificationController extends Controller
 {
     use RedirectsUsers;    
 
@@ -18,8 +21,7 @@ class EmailVerificationController
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
+        $this->middleware('auth:sanctum');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
     
@@ -34,15 +36,14 @@ class EmailVerificationController
     public function verify(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required',
-            'hash' => 'required',
+            'token' => 'required|int',
         ]);
 
-        if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
-            throw new AuthorizationException;
-        }
+        $otp = OneTimePassword::where('token', $validated['token'])
+                    ->where('action', OneTimePassword::VERIFY_EMAIL)
+                    ->first();
 
-        if (! hash_equals((string) $request->route('hash'), sha1($request->user()->getEmailForVerification()))) {
+        if (is_null($otp) || $otp->isExpired()) {
             throw new AuthorizationException;
         }
 

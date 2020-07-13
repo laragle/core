@@ -38,11 +38,4 @@ interface TokenRepositoryInterface
      * @return void
      */
     public function delete(CanResetPasswordContract $user);
-
-    /**
-     * Delete expired tokens.
-     *
-     * @return void
-     */
-    public function deleteExpired();
 }

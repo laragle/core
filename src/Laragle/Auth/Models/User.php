@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Laragle\Auth\Contracts\CanResetPasswordContract;
 use Laragle\Auth\Notifications\ResetPasswordNotification;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Model implements
     AuthenticatableContract,
@@ -22,7 +23,8 @@ class User extends Model implements
         Authorizable, 
         CanResetPassword, 
         MustVerifyEmail,
-        Notifiable;
+        Notifiable,
+        HasApiTokens;
 
     /**
      * The attributes that aren't mass assignable.
