@@ -31,13 +31,13 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function it_can_reset_password()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
 
         $token = Password::broker()->createToken($user);
 
-        $newPassword = $this->faker->password;
+        $newPassword = 'newpassword';
 
         $response = $this->postJson(route('laragle.auth.password.reset'), [
             'email' => $user->email,

@@ -4,7 +4,7 @@ namespace Laragle\Authentication;
 
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+class AuthenticationServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -52,8 +52,8 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/config.php', 'laragle.auth');
+        $this->mergeConfigFrom(__DIR__.'/config.php', 'laragle.authentication');
 
-        config(['auth' => config('laragle.auth')]);
+        config(['auth' => config('laragle.authentication')]);
     }
 }

@@ -18,6 +18,6 @@ function remote()
 
 git pull origin $CURRENT_BRANCH
 
-remote auth git@github.com:laragle/authentication.git
+remote authentication git@github.com:laragle/authentication.git
 
 split 'src/Laragle/Authentication' authentication

@@ -1,11 +1,11 @@
 {
-    "name": "laragle/auth",
-    "description": "The Laragle auth component.",
+    "name": "laragle/authentication",
+    "description": "The Laragle authentication component.",
     "keywords": [
         "laragle",
         "auth"
     ],
-    "homepage": "https://github.com/laragle/auth",
+    "homepage": "https://github.com/laragle/authentication",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -40,8 +40,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laragle\\Auth\\AuthServiceProvider",
-                "Laragle\\Auth\\Passwords\\PasswordResetServiceProvider"
+                "Laragle\\Authentication\\AuthenticationServiceProvider",
+                "Laragle\\Authentication\\Passwords\\PasswordResetServiceProvider"
             ]
         }
     }
