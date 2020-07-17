@@ -3,6 +3,7 @@
 namespace Laragle\Core\Tests\Authentication;
 
 use Laragle\Authentication\Models\User;
+use Laragle\Core\Tests\TestCase;
 
 class LogoutTest extends TestCase
 {

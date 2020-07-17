@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Notification;
 use Laragle\Authentication\Facades\Password;
 use Laragle\Authentication\Models\User;
 use Laragle\Authentication\Notifications\ResetPasswordNotification;
+use Laragle\Core\Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
 {

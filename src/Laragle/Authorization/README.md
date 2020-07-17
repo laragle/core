@@ -1,9 +1,9 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laragle/auth.svg?style=flat-square)](https://packagist.org/packages/laragle/auth)
-[![Build Status](https://img.shields.io/travis/laragle/auth/master.svg?style=flat-square)](https://travis-ci.org/laragle/auth)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laragle/auth.svg?style=flat-square)](https://scrutinizer-ci.com/g/laragle/auth)
-[![Total Downloads](https://img.shields.io/packagist/dt/laragle/auth.svg?style=flat-square)](https://packagist.org/packages/laragle/auth)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laragle/authorization.svg?style=flat-square)](https://packagist.org/packages/laragle/authorization)
+[![Build Status](https://img.shields.io/travis/laragle/authorization/master.svg?style=flat-square)](https://travis-ci.org/laragle/authorization)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laragle/authorization.svg?style=flat-square)](https://scrutinizer-ci.com/g/laragle/authorization)
+[![Total Downloads](https://img.shields.io/packagist/dt/laragle/authorization.svg?style=flat-square)](https://packagist.org/packages/laragle/authorization)
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
@@ -12,7 +12,7 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require laragle/authentication
+composer require laragle/authorization
 ```
 
 ## Usage

@@ -18,10 +18,12 @@
     "require": {
         "php": "^7.2.5",
         "illuminate/support": "^7.18",
-        "laravel/sanctum": "^2.4"
+        "laravel/sanctum": "^2.4",
+        "silber/bouncer": "v1.0.0-rc.8"
     },
     "replace": {
-        "laragle/auth": "self.version"
+        "laragle/authentication": "self.version",
+        "laragle/authorization": "self.version"
     },
     "require-dev": {
         "orchestra/testbench": "^5.3",
@@ -48,8 +50,9 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laragle\\Auth\\AuthServiceProvider",
-                "Laragle\\Auth\\Passwords\\PasswordResetServiceProvider"
+                "Laragle\\Authentication\\AuthenticationServiceProvider",
+                "Laragle\\Authentication\\Passwords\\PasswordResetServiceProvider",
+                "Laragle\\Authorization\\AuthorizationServiceProvider"
             ]
         }
     }

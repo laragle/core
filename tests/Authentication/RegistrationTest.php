@@ -2,6 +2,8 @@
 
 namespace Laragle\Core\Tests\Authentication;
 
+use Laragle\Core\Tests\TestCase;
+
 class RegistrationTest extends TestCase
 {
     /** @test */

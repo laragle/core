@@ -1,0 +1,39 @@
+{
+    "name": "laragle/authorization",
+    "description": "The Laragle authorization component.",
+    "keywords": [
+        "laragle",
+        "authorization"
+    ],
+    "homepage": "https://github.com/laragle/authorization",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Darwin Luague",
+            "email": "darwinluague9001@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^7.0",
+        "silber/bouncer": "v1.0.0-rc.8",
+        "laragle/authentication": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laragle\\Authorization\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laragle\\Authorization\\AuthorizationServiceProvider"
+            ],
+        }
+    }
+}

@@ -4,6 +4,7 @@ namespace Laragle\Core\Tests\Authentication;
 
 use Laragle\Authentication\Models\OneTimePassword;
 use Laragle\Authentication\Models\User;
+use Laragle\Core\Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 
 class EmailVerificationTest extends TestCase
