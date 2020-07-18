@@ -24,7 +24,7 @@ class AuthenticationServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/config.php' => config_path('laragle/auth.php'),
-            ], 'laragle');
+            ], 'laragle.authentication');
 
             // Publishing the views.
             /*$this->publishes([

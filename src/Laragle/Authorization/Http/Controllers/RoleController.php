@@ -3,9 +3,12 @@
 namespace Laragle\Authorization\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Silber\Bouncer\Database\Role;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Laragle\Authorization\Http\Resources\RoleResource;
+use Laragle\Authorization\Models\Role;
 
-class RoleController
+class RoleController extends Controller
 {
     use AuthorizesRequests;
 
@@ -24,9 +27,13 @@ class RoleController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return RoleResource::collection(
+            Role::search($request->q)
+                ->sort($request->sorters)
+                ->paginate()
+        );
     }
 
     /**

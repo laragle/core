@@ -4,6 +4,8 @@ namespace Laragle\Authorization;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 use Illuminate\Support\ServiceProvider;
+use Laragle\Authorization\Models\Role;
+use Laragle\Authorization\Policies\RolePolicy;
 
 class AuthorizationServiceProvider extends AuthServiceProvider
 {
@@ -13,7 +15,7 @@ class AuthorizationServiceProvider extends AuthServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Role::class => RolePolicy::class,
     ];
 
     /**
@@ -30,11 +32,12 @@ class AuthorizationServiceProvider extends AuthServiceProvider
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'authorization');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadFactoriesFrom(__DIR__.'/database/factories');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/config.php' => config_path('laragle/authorization.php'),
-            ], 'laragle');
+            ], 'laragle.authorization');
 
             // Publishing the views.
             /*$this->publishes([

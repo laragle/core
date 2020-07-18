@@ -3,6 +3,7 @@
 namespace Laragle\Core\Tests\Authorization;
 
 use Laragle\Core\Tests\TestCase;
+use Silber\Bouncer\Database\Role;
 
 class RoleTest extends TestCase
 {
@@ -11,10 +12,14 @@ class RoleTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->login();
+        $this->loginAsSuperAdmin();
+
+        $role = factory(Role::class)->create();
 
         $response = $this->getJson(route('laragle.roles.index'));
 
         $response->assertSuccessful();
+
+        $response->assertJsonFragment($role->toArray());
     }
 }
