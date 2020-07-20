@@ -3,7 +3,6 @@
 namespace Laragle\Authorization;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
-use Illuminate\Support\ServiceProvider;
 use Laragle\Authorization\Models\Role;
 use Laragle\Authorization\Policies\RolePolicy;
 

@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Silber\Bouncer\Database\Role;
+use Laragle\Authorization\Models\Role;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [

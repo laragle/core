@@ -5,6 +5,7 @@ namespace Laragle\Authorization\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Validation\Rule;
 use Laragle\Authorization\Http\Resources\RoleResource;
 use Laragle\Authorization\Models\Role;
 
@@ -44,7 +45,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'alpha_dash',
+                'max:255',
+                Rule::unique('roles'),
+            ],
+            'title' => 'required|string|max:255',
+        ]);
+
+        return RoleResource::make(Role::create($validated));
     }
 
     /**
@@ -55,7 +67,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return RoleResource::make($role);
     }
 
     /**
