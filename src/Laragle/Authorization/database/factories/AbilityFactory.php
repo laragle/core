@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use Laragle\Authorization\Models\Role;
+use Laragle\Authorization\Models\Ability;
 
-$factory->define(Role::class, function (Faker $faker) {
+$factory->define(Ability::class, function (Faker $faker) {
     return [
         'title' => $faker->words(3, true),
     ];

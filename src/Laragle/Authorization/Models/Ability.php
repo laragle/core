@@ -5,9 +5,9 @@ namespace Laragle\Authorization\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Laragle\Support\Scopes\SearchScope;
 use Laragle\Support\Scopes\SortScope;
-use Silber\Bouncer\Database\Role as Model;
+use Silber\Bouncer\Database\Ability as Model;
 
-class Role extends Model
+class Ability extends Model
 {
     use SearchScope, SortScope, Sluggable;
 

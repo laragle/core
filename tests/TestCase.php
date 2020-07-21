@@ -3,6 +3,7 @@
 namespace Laragle\Core\Tests;
 
 use Bouncer;
+use Cviebrock\EloquentSluggable\ServiceProvider as SluggableServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laragle\Authentication\AuthenticationServiceProvider;
@@ -34,6 +35,7 @@ class TestCase extends BaseTestCase
             SanctumServiceProvider::class,
             AuthorizationServiceProvider::class,
             BouncerServiceProvider::class,
+            SluggableServiceProvider::class,
         ];
     }
 

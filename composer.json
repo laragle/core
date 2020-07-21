@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.2.5",
+        "cviebrock/eloquent-sluggable": "^7.0",
         "illuminate/support": "^7.18",
         "laravel/sanctum": "^2.4",
         "silber/bouncer": "v1.0.0-rc.8"

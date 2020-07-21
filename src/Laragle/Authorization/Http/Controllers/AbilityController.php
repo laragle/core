@@ -6,10 +6,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
-use Laragle\Authorization\Http\Resources\RoleResource;
-use Laragle\Authorization\Models\Role;
+use Laragle\Authorization\Http\Resources\AbilityResource;
+use Laragle\Authorization\Models\Ability;
 
-class RoleController extends Controller
+class AbilityController extends Controller
 {
     use AuthorizesRequests;
 
@@ -20,7 +20,7 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(Role::class, 'role');
+        $this->authorizeResource(Ability::class, 'role');
     }
 
     /**
@@ -30,8 +30,8 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        return RoleResource::collection(
-            Role::search($request->q)
+        return AbilityResource::collection(
+            Ability::search($request->q)
                 ->sort($request->sorters)
                 ->paginate()
         );
@@ -49,39 +49,39 @@ class RoleController extends Controller
             'title' => 'required|string|max:255',
         ]);
 
-        return RoleResource::make(Role::create($validated));
+        return AbilityResource::make(Ability::create($validated));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Silber\Bouncer\Database\Role  $role
+     * @param  \Silber\Bouncer\Database\Ability  $ability
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Ability $ability)
     {
-        return RoleResource::make($role);
+        return AbilityResource::make($ability);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Silber\Bouncer\Database\Role  $role
+     * @param  \Silber\Bouncer\Database\Ability  $ability
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Ability $ability)
     {
         $validated = $request->validate([
             'title' => [
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('roles')->ignore($role)
+                Rule::unique('abilities')->ignore($ability)
             ]
         ]);
 
-        $role->update($validated);
+        $ability->update($validated);
 
         return ['success' => true];
     }
@@ -89,12 +89,12 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Silber\Bouncer\Database\Role  $role
+     * @param  \Silber\Bouncer\Database\Ability  $ability
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Ability $ability)
     {
-        $role->delete();
+        $ability->delete();
 
         return ['success' => true];
     }

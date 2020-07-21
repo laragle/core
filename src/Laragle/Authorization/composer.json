@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
+        "cviebrock/eloquent-sluggable": "^7.0",
         "illuminate/support": "^7.0",
         "silber/bouncer": "v1.0.0-rc.8",
         "laragle/authentication": "^1.0"
@@ -33,7 +34,7 @@
         "laravel": {
             "providers": [
                 "Laragle\\Authorization\\AuthorizationServiceProvider"
-            ],
+            ]
         }
     }
 }
